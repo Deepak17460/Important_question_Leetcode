@@ -1,0 +1,80 @@
+// Using Bfs & dfs Technique//
+ It is giving tle in this code
+ 
+ class Solution 
+{
+public:
+    // DFS function to find out every possible path
+    void dfs(unordered_map<string,vector<string>>&m,vector<vector<string>>&ans,vector<string>tmp,string node,string end)
+    {
+        tmp.push_back(node);
+        if(node==end)
+        {
+            ans.push_back(tmp);
+            return;
+        }
+        for(auto it:m[node])
+        {
+            dfs(m,ans,tmp,it,end);
+        }
+    }
+    vector<vector<string>>findLadders(string begin,string end,vector<string>&word) 
+    {
+        unordered_set<string>dict(word.begin(),word.end()); // for faster lookup
+        // If the endWord doesn't exist in the list then return an emty list.
+        if(dict.find(end)==dict.end())
+        {
+            return {};
+        }
+        vector<vector<string>>ans; // For storing the answer
+        unordered_map<string,int>dist; // for stroing the level in graph
+        queue<string>q; // for BFS
+        unordered_map<string,vector<string>>m; // adjacency list 
+        q.push(begin);   // start with the beginWord 
+        dist[begin]=1;   // the beginWord is always at the level = 1
+        while(!q.empty())
+        {
+            string node=q.front();
+            q.pop();
+            // If we've found the endWord the we can break
+            if(node==end)
+            {
+                break;
+            }
+            else
+            {
+                for(int i=0;i<node.length();i++)
+                {
+                    string newWord=node;
+                    // try to fill with all the alphabets 
+                    for(char c='a';c<='z';c++)
+                    {
+                        newWord[i]=c;
+                        // If the newWord is present in the list then add the edge
+                        if(dict.find(newWord)!=dict.end())
+                        {
+                            if(dist.find(newWord)==dist.end())
+                            {
+                                q.push(newWord); // push it to the queue
+                                dist[newWord]=dist[node]+1; //update the level
+                                m[node].push_back(newWord); // add the edge 
+                            }
+                            else if(dist[newWord]==dist[node]+1)
+                            {
+                                m[node].push_back(newWord);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // If endWord is not included in the graph finally then return an empty list
+        if(dist.find(end)==dist.end())
+        {
+            return {};
+        }
+        // apply dfs to find out every possible path.
+        dfs(m,ans,{},begin,end);
+        return ans;
+    }
+};
