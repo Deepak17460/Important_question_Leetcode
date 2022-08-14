@@ -1,0 +1,58 @@
+// TIme complexity is O(n*n*w)//
+code:-
+
+class Solution {
+public:
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        // unordered_set for minimize the time i..e O(1)
+        unordered_set<string>Str_set;
+        bool IsPresent=false;
+        //  Thoughts process
+        for(auto word:wordList){
+            if(endWord.compare(word)==0) 
+                IsPresent=true;
+            
+            Str_set.insert(word);
+        }
+        // Checking the endword is present in wordlist yes or not
+        if(IsPresent==false) return 0;
+        // If it is present then then go with Bfs Approach
+        // declearing the queue
+        queue<string>q;
+        q.push(beginWord);
+        //  Number of depth,intially standing on the source Node of Graph
+        int depth=0;
+        while(!q.empty()){
+            depth+=1;
+            int size=q.size();
+            while(size--){
+            string curr=q.front();
+            q.pop();
+            // Checking for all possible for node 1 to reach at Destination
+            for(int i=0;i<curr.size();i++)  // for each index on that node
+            {
+                string temp=curr;
+                for(char c='a';c<='z';c++)  // for all the 26 chars
+                { 
+                    temp[i]=c;
+                    if(curr.compare(temp)==0){
+                        // skip for same word
+                        continue;
+                    }
+                    if(temp.compare(endWord)==0){
+                        return depth+1;
+                    }
+                    if(Str_set.find(temp)!=Str_set.end()){
+                        q.push(temp);
+                        Str_set.erase(temp);
+                    }
+                    
+                }
+            }
+            
+        }
+        
+    }
+        return 0;
+ }
+};
