@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int uniqueMorseRepresentations(vector<string>& words) {
+        // unoredered_set to check the different string for the answer
+        unordered_set<string>s;
+        vector<string>morse={".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+        for(auto word : words){
+            string newString=" ";
+            for(char c : word){
+                newString+=morse[c-'a'];
+            }
+            s.insert(newString);
+        }
+        return s.size();
+    }
+};
