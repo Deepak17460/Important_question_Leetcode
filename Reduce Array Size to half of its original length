@@ -1,0 +1,40 @@
+Using Sorting, Hashma & hashSet
+Time Complexity is O(NlogN) & space Complexity is O(N)
+code:-
+  // size of array
+       int n=arr.size();
+         // 3 5 2 7
+        // unordered_map to track the frequency of every element
+   unordered_map<int,int>m;
+   for(int i:arr){
+       m[i]++;
+   }
+   // set to remove the duplicate element
+   unordered_set<int>s;
+   for(int i:arr){
+       s.insert(i);
+   }
+   // to keep track on the frequency
+   vector<int>frq;
+   for(auto i:s){
+       frq.push_back(m[i]);
+   }
+    // sorting
+   sort(frq.begin(),frq.end());
+   // Sum that has to be compared everytime
+   int curr_sum=0;
+   int i=frq.size()-1;
+   // Storing the eleement in that thereby array can be half of its original size
+   int ct=0;
+   while(i>=0){
+       // 1 2 3 4
+       curr_sum+=frq[i];
+       // keep  taking the value from array to make it divisible >>1 to get the half size of its original array
+       ct++;
+       // check whether our array would become half or not yes the return from here
+       if(curr_sum>=(n>>1)){
+           break;
+       }
+       i--;
+   }
+        return ct;
