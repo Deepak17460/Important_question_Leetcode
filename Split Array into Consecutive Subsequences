@@ -1,0 +1,39 @@
+// Time Complexity is O(N) & Space Complexity is O(N) where N is Length //of array 
+// using Greedy approach 
+class Solution {
+public:
+    bool isPossible(vector<int>& nums) {
+        // Map to count the frequency
+        unordered_map<int,int>freq;
+        for(int x:nums){
+            freq[x]++;
+        }
+        // the element we need to create the Subsequence
+        unordered_map<int,int>need;
+        
+        // traverse over the array
+        for(int n:nums){
+            if(freq[n]==0) continue;
+            
+            if(need[n]>0){
+                freq[n]--;
+                need[n]--;
+                
+                // next element
+                need[n+1]++; 
+            }
+            else if(freq[n]>0 && freq[n+1]>0 && freq[n+2]>0){
+                freq[n]--;
+                freq[n+1]--;
+                freq[n+2]--;
+                // next element
+                need[n+3]++;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+        
+    }
+};
