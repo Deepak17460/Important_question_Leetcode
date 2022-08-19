@@ -1,0 +1,28 @@
+Code->
+
+#include<bits/stdc++.h>
+
+int subArrayCount(vector<int> &arr, int k) {
+ // declear unordered_map
+    unordered_map<int,int>remhash;
+    // add base condition in it
+    remhash[0]=1;
+    // total subarray
+    int ct=0;
+    long sum=0;
+    for(int i :arr){    // time complexity is O(n)
+        sum+=i;
+        int rem=(sum%k+k)%k;
+        // checking it is already present or not
+        if(remhash.find(rem)!=remhash.end()){
+            ct+=remhash[rem];
+            remhash[rem]++;
+        }
+        // it is not present then
+        else{
+            remhash[rem]=1;
+        }
+    }
+      // finallly return the ans
+    return ct;
+}
