@@ -5,12 +5,13 @@ class Solution {
         if(i<0) return 0;
         if(dp[i][j]!=-1) return dp[i][j];
         if(s[i]==t[j]){
-            return dp[i][j]=Helper(s,t,i-1,j-1,dp)+Helper(s,t,i-1,j,dp);
+             dp[i][j]=Helper(s,t,i-1,j-1,dp)+Helper(s,t,i-1,j,dp);
         }
         else
         {
-            return dp[i][j]=Helper(s,t,i-1,j,dp);
+             dp[i][j]=Helper(s,t,i-1,j,dp);
         }
+        return dp[i][j];
     }
 public:
     int numDistinct(string s, string t) {
