@@ -1,13 +1,16 @@
 class Solution {
 public:
-    int strStr(string haystack, string needle) {
-        if(haystack==needle) return 0;
-         if(haystack.compare(needle)!=0){
-             return haystack.find(needle);
-         }
-        else
-        {
-            return -1;
-        }
+    int strStr(string haystack, string needle) {   
+    int n=needle.size();
+    int l=0;
+    int m=haystack.size();
+    while(l<m){
+        string str;
+        str=haystack.substr(l,n);
+        // checking
+        if(needle==str) return l;
+        l++;
+    }
+    return -1;
     }
 };
