@@ -4,10 +4,10 @@ public:
            vector<int>res;
         int direction = 1;
         int i=0, j=0;
-        while (i < mat.size() and j < mat[0].size()) {
+        while (i < mat.size()&&j < mat[0].size()) {
             res.push_back(mat[i][j]);
-            if (direction) {
-                if (i == 0 or j == mat[0].size()-1) {
+            if (direction==1) {
+                if (i == 0||j == mat[0].size()-1) {
                     direction = 0;
                     j != mat[0].size()-1 ? ++j : ++i;
                     continue;
