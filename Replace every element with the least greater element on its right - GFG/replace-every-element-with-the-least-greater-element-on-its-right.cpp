@@ -10,16 +10,24 @@ using namespace std;
 class Solution{
     public:
     vector<int> findLeastGreater(vector<int>& arr, int n) {
-         set<int>st;
-        vector<int>ans(n);
-        for(int i = n-1;i>=0;i--){
-            auto it = st.upper_bound(arr[i]);
-            //cout<<(*it)<<endl;
-            if(it==st.end()) ans[i] = -1;
-            else ans[i] = *it;
-            st.insert(arr[i]);
+        
+        // using Order set here
+        set<int>st;
+        // Result
+        vector<int>res(n);
+        for(int i=n-1;i>=0;i--){
+            // Iterator 
+            auto it=st.upper_bound(arr[i]);
+             // least greater element it is present or not
+             if(it==st.end()){
+                  res[i]=-1;
+             }
+             else{
+                 res[i]=*it;
+             }
+             st.insert(arr[i]);
         }
-        return ans;
+        return res;
     }
 };
 
