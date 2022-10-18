@@ -7,29 +7,27 @@ class Solution{
 	
 	public:
 	vector<int> downwardDigonal(int N, vector<vector<int>> A)
-	{
-	    int n=A.size();
-	    // Corner Case
-		vector<int>ans;
-		for(int i=0;i<n;i++){
-		    int l=0;
-		    int r=i;
-		    while(r>=0 && l<n){
-		        ans.push_back(A[l][r]);
-		        l++;
-		        r--;
-		    }
-		}
-		for(int i=1;i<n;i++){
-		    int l=i;
-		    int r=n-1;
-		    while(l<n && r>=0){
-		        ans.push_back(A[l][r]);
-		        r--;
-		        l++;
-		    }
-		}
-		return ans;
+	{ 
+	        // Size of the Matrix
+	        int n=A.size();
+	      // Storing the result
+	        vector<int>ans;
+	      for(int i=0;i<n;i++){
+	          int l=0;
+	          int r=i;
+	          while(l<n && r>=0){
+              ans.push_back(A[l++][r--]);
+	          }
+	      }
+	      //return ans;
+	      for(int i=1;i<n;i++){
+	          int l=i;
+	          int r=n-1;
+	          while(l<n && r>=0){
+	              ans.push_back(A[l++][r--]);
+	          }
+	      }
+	      return ans;
 	}
 
 };
