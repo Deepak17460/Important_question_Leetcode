@@ -3,21 +3,21 @@
 using namespace std;
 
 // } Driver Code Ends
-
 class Solution {
     int mod=1e8;
     private:
-    int Helper(int n,vector<int>&dp){
-        if(n==0) return 1;
-        if(n==1) return 1;
-        // Memoization
-        if(dp[n]!=-1) return dp[n];
-        return dp[n]=(Helper(n-1,dp)%mod+Helper(n-2,dp)%mod)%mod;
+    int Helper(int n){
+        vector<int>dp(n+1);
+        dp[0]=1;
+        dp[1]=1;
+        for(int i=2;i<=n;i++){
+            dp[i]=(dp[i-1]%mod+dp[i-2]%mod)%mod;
+        }
+        return dp[n];
     }
   public:
     int fillingBucket(int N) {
-        vector<int>dp(N+1,-1);
-        return Helper(N,dp);
+    return Helper(N);
     }
 };
 
