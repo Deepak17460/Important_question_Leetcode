@@ -10,7 +10,7 @@ using namespace std;
 class Solution{
 public:
     int findMin(int n, char a[]){
-        int r=0, g=0, b=0;
+         int r=0, g=0, b=0;
         for(int i=0; i<n; i++){
             if(a[i] == 'R')r++;
             if(a[i] == 'G')g++;
