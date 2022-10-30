@@ -3,13 +3,10 @@
 using namespace std;
 
 // } Driver Code Ends
-
-#define ll long long int
-
 class Solution {
 public:
 	long long int NoOfChicks(int n){
-	    
+	    #define ll long long int
 	    ll arr[n+1];
 	    ll pre=0;
 	    arr[0]=0;
