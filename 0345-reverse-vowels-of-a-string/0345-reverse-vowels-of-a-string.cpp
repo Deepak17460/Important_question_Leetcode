@@ -3,7 +3,7 @@ public:
     string reverseVowels(string s) {
         int n=s.length();
         int i=0,j=n-1;
-        int dict[256] = {0};
+        vector<int>dict(256,0);
         dict['a'] = 1, dict['A'] = 1;
         dict['e'] = 1, dict['E'] = 1;
         dict['i'] = 1, dict['I'] = 1;
