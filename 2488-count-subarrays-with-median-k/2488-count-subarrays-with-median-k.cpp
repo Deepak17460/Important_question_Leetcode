@@ -20,13 +20,13 @@ public:
             sum+=i;
             
             if(sum==k) res++;
-            if(mp.find(sum - k)!= mp.end()) 
+            if(mp.count(sum - k)!=0) 
             {
                 res+= mp[sum - k];
             }
             
             if(sum == k-1) res++;
-            if(mp.find(sum - (k-1))!= mp.end())
+            if(mp.count(sum - (k-1))!=0)
             {
                 res+= mp[sum - (k-1)];
             }
